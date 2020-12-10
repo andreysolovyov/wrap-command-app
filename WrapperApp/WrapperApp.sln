@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WrapperApp", "WrapperApp.csproj", "{F59F605F-8611-4584-B900-241D6B4CA423}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnerConsoleApp", "..\InnerConsoleApp\InnerConsoleApp.csproj", "{A0512001-6DFB-4F37-B935-DCEB1EE6D786}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F59F605F-8611-4584-B900-241D6B4CA423}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F59F605F-8611-4584-B900-241D6B4CA423}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F59F605F-8611-4584-B900-241D6B4CA423}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F59F605F-8611-4584-B900-241D6B4CA423}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0512001-6DFB-4F37-B935-DCEB1EE6D786}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0512001-6DFB-4F37-B935-DCEB1EE6D786}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0512001-6DFB-4F37-B935-DCEB1EE6D786}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0512001-6DFB-4F37-B935-DCEB1EE6D786}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {22477A29-72F3-4F34-9FBB-7EAFA7F3DEB1}
+	EndGlobalSection
+EndGlobal
