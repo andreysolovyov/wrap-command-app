@@ -53,7 +53,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>74FCD33E2C724644D4FD66A9C99BB13AA881A1CF</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>BC04321EB25E46E6B1EDCECA956D3C538ED410F2</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>WrapperApp_TemporaryKey.pfx</ManifestKeyFile>

@@ -32,6 +32,14 @@
             <RowDefinition Height="20" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Rectangle Grid.ColumnSpan="3" Grid.RowSpan="5">
+            <Rectangle.Fill>
+                <LinearGradientBrush SpreadMethod="Reflect" StartPoint="0,0" EndPoint="0,0.5">
+                    <GradientStop Color="Black" Offset="0"></GradientStop>
+                    <GradientStop Color="#f55142" Offset="1"></GradientStop>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
         <StackPanel Visibility="{Binding Path=HasInstalled, Converter={StaticResource BoolToVisibilityConverter}}"
                     Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
             <StackPanel.Resources>
