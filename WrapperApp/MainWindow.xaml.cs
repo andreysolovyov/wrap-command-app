@@ -48,8 +48,27 @@ namespace WrapperApp
                 {
                     this.ViewModel.InProgress = true;
                     this.ViewModel.LoadingIndicatorText = "Initialization...";
-                    this._appSettings = ConfigurationManager.AppSettings;
 
+                    try
+                    {
+                        this._appSettings = ConfigurationManager.AppSettings;
+                        var test = this._appSettings["unpackPath"];
+                        if(string.IsNullOrEmpty(test))
+                        {
+                            throw new ConfigurationErrorsException();
+                        }
+                    }
+                    catch (ConfigurationErrorsException)
+                    {
+                        this._appSettings = new NameValueCollection();
+                        // using defaults
+                        this._appSettings.Add("unpackPath", "C:/Data/WrapperApp/UnpackedProgram");
+                        this._appSettings.Add("executableName", "nogui.exe");
+                        this._appSettings.Add("btn1Args", "chrome");
+                        this._appSettings.Add("btn2Args", "firefox");
+                        this._appSettings.Add("btn3Args", "edge");
+                    }
+                    
                     var assembly = Assembly.GetExecutingAssembly();
                     var extractPath = this._appSettings["unpackPath"];
                     var executableName = this._appSettings["executableName"];
@@ -82,10 +101,6 @@ namespace WrapperApp
 
                     this.ViewModel.LoadingIndicatorText = "Finished";
                 }
-                catch (ConfigurationErrorsException)
-                {
-                    Console.WriteLine("Error reading app settings");
-                }
                 finally
                 {
                     this.ViewModel.LoadingIndicatorText = string.Empty;
@@ -113,13 +128,28 @@ namespace WrapperApp
 
         private void ExecuteCommand(int commandType)
         {
-            var extractPath = this._appSettings["unpackPath"];
-            var executableName = this._appSettings["executableName"];
+            try
+            {
+                this.ViewModel.LoadingIndicatorText = "Running command...";
+                this.ViewModel.InProgress = true;
+                var extractPath = this._appSettings["unpackPath"];
+                var executableName = this._appSettings["executableName"];
 
-            Process.Start(System.IO.Path.Combine(extractPath, executableName),
-                this._appSettings[string.Format("btn{0}Args", commandType)]);
+                var processInfo = Process.Start(System.IO.Path.Combine(extractPath, executableName),
+                    this._appSettings[string.Format("btn{0}Args", commandType)]);
 
-            //this.ViewModel.LoadingIndicatorText = "Command executed";
+                processInfo.WaitForExit();
+                this.ViewModel.InProgress = false;
+                this.ViewModel.LoadingIndicatorText = string.Empty;
+            }
+            catch(Exception exc)
+            {
+                this.ViewModel.LoadingIndicatorText = exc.Message;
+            }
+            finally
+            {
+                this.ViewModel.InProgress = false;
+            }
         }
     }
 }
