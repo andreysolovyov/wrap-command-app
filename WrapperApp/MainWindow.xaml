@@ -4,19 +4,34 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
-        Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}"
         Title="MainWindow" Height="450" Width="800">
 
     <Window.Resources >
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" Value="0.5" />
+                    <Setter Property="Background" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -43,54 +58,47 @@
         <StackPanel Visibility="{Binding Path=HasInstalled, Converter={StaticResource BoolToVisibilityConverter}}"
                     Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
             <StackPanel.Resources>
-                <system:Double x:Key="IconSize">32</system:Double>
+                <system:Double x:Key="IconSize">82</system:Double>
             </StackPanel.Resources>
 
             <Button
                 Name="btnChrome"
                 Click="btnChrome_Click"
                 Margin="20 20"
-                Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                Width="{StaticResource IconSize}"
+                Height="{StaticResource IconSize}"
                 ToolTip="GoogleChrome">
-                <materialDesign:PackIcon
-                    Kind="GoogleChrome"
-                    Height="{StaticResource IconSize}"
-                    Width="{StaticResource IconSize}" />
+                <Image Source="Icons/chrome.png"></Image>
             </Button>
             <Button
                 Name="btnFirefox"
                 Click="btnFirefox_Click"
                 Margin="20 20"
-                Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                Width="{StaticResource IconSize}"
+                Height="{StaticResource IconSize}"
                 ToolTip="Firefox">
-                <materialDesign:PackIcon
-                    Kind="Firefox"
-                    Height="{StaticResource IconSize}"
-                    Width="{StaticResource IconSize}" />
+
+                <Image Source="Icons/firefox.png"></Image>
             </Button>
             <Button
                 Name="btnEdge"
                 Click="btnEdge_Click"
                 Margin="20 20"
-                Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                Width="{StaticResource IconSize}"
+                Height="{StaticResource IconSize}"
                 ToolTip="MicrosoftEdge">
-                <materialDesign:PackIcon
-                    Kind="MicrosoftEdge"
-                    Height="{StaticResource IconSize}"
-                    Width="{StaticResource IconSize}" />
+                <Image Source="Icons/edge.png"></Image>
             </Button>
         </StackPanel>
         <StackPanel Visibility="{Binding Path=InProgress, Converter={StaticResource BoolToVisibilityConverter}}"
                     Grid.Column="1" Grid.Row="2" Orientation="Vertical">
             <ProgressBar
                 Name="progressIndicator"
-                    Style="{StaticResource MaterialDesignCircularProgressBar}"
                     Value="0"
                     IsIndeterminate="True"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Vertical">
             <TextBlock x:Name="tbStatus" TextAlignment="Center" 
-                       Style="{DynamicResource MaterialDesignTextBlock}"
                        Text="{Binding Path=LoadingIndicatorText}"></TextBlock>
         </StackPanel>
     </Grid>
